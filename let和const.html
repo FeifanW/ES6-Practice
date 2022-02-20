@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // console.log("a",a)
+    // var a = 1
+
+    // 1.let没有变量提升
+    // console.log("变量提升b",b)
+    // let b = 20
+    // 2. 块级作用域
+    // if(1==1){
+    //     let c = 30
+    // }
+    // console.log("块级作用域c", c)
+
+
+    // 3. 重复赋值
+    // var a = 1
+    // var a = 2
+    // console.log("重复赋值的a",a)
+
+    // let b = 2
+    // let b = 3
+    // console.log("重复赋值的b", b)
+
+    // 4.const 声明常量
+
+    // const a = 1
+    // a = 20
+
+    // const a = 2
+    // if(1==1){
+    //     const a = 2
+    // }
+    
+    // const a = {
+    //     name:"2021"
+    // }
+    // a.name = "2022"
+
+    // console.log("const不可修改",a)
+
+    // const a = 1
+
+    // 以for循环为例子：
+    // const arr = []
+    // for(var i=0; i<10 ;i++){
+    //     arr[i] = function(){
+    //         return i
+    //     }
+    // }
+    // for(let i=0; i<10 ;i++){
+    //     arr[i] = function(){
+    //         return i
+    //     }
+    // }
+    // 因为i会被变量提升，var i, 但是用let不会有这个问题
+    // console.log("打印一下arr",arr[5]())
+
+
+    // let和const不会污染全局变量
+    const RegExp = 10
+    console.log("RegExp",RegExp)
+    console.log("window.RegExp",window.RegExp)
+</script>
+</body>
+</html>
