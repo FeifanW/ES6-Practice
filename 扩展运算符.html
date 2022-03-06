@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="test">
+</div>
+<script>
+    // 剩余运算符：把多个独立的合并到一个数组中
+    // 扩展运算符：把一个数组分割，并将各个项作为分离的参数传给参数
+    // const maxNum = Math.max(20,30)
+    // console.log(maxNum)
+
+    // 处理数组中的最大是，使用apply
+    // const arr = [10,20,50,30,90,100,200]
+    // console.log(Math.max.apply(null,arr))
+
+    // ES6 扩展运算符
+    // console.log(Math.max(...arr))
+
+    // 箭头函数
+    // let add = val => val
+    // console.log(add(10))
+
+    // 返回一个对象
+    // let temp = id => {
+    //     return {
+    //         id: id,
+    //         name: 'feifan'
+    //     }
+    // }
+
+    // 返回一个对象简写形式
+    // let temp = id => ({id:id, name:'feifan'})
+
+    // let obj = temp(1);
+    // console.log(obj)
+
+    // let fn = (function() {
+    //     return function() {
+    //         console.log("hello world")
+    //     }
+    // })()
+
+    let fn = (()=>{
+        return ()=>{
+            console.log('hello tomorrow')
+        }
+    })()
+    fn()
+</script>
+</body>
+</html>
