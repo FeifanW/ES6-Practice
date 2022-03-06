@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="test">
+</div>
+<script>
+// 1.带参数默认值的函数
+
+// es5写法
+// function add(a,b) {
+//     a = a || 10;
+//     b = b || 20;
+//     return a + b
+// }
+// console.log(add())
+
+// 1. es6写法
+// function add(a, b = 20) {
+//     return a + b
+// }
+// console.log(add(50))
+
+// 2. es6里面默认的表达式也可以是一个函数
+// function add(a, b = getVal(10)) {
+//     return a + b
+// }
+// function getVal(val) {
+//     return val + 10
+// }
+// console.log(add(5))
+
+// ES5剩余参数写法
+// function pick(obj) {
+//     let result = Object.create(null);
+//     for(let i = 1; i < arguments.length; i++){
+//         result[arguments[i]] = obj[arguments[i]]
+//     }
+//     return result
+// }
+
+// let book = {
+//     title:'最后的回答',
+//     author:'阿西莫夫',
+//     year:2022
+// }
+
+// let bookData = pick(book,'title','year','author');
+// console.log(bookData)
+
+// ES6剩余参数写法 ...和一个紧跟着的具名参数  比如...keys
+function pick(obj,...keys) {
+    // console.log("keys",keys)
+    let result = Object.create(null)
+    for(let i=0; i<keys.length; i++){
+        result[keys[i]] = obj[keys[i]]
+    }
+    return result
+}
+
+let book = {
+    title:'最后的回答',
+    author:'阿西莫夫',
+    year:2022
+}
+
+function checkArgs(...args){
+    console.log(args)  // 真正的数组
+    console.log(arguments)  // 伪数组，有length属性但是没有数组的push、pop等方法
+}
+
+checkArgs('a','b','c')
+
+let bookData = pick(book,'title','year','author');
+console.log(bookData)
+
+
+</script>
+</body>
+</html>
