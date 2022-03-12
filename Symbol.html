@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 原始数据类型Symbol，代表一个独一无二的值
+// 最大的用途：用来定义对象的私有变量
+// const name = Symbol('name')
+
+// const name2 = Symbol('name')
+// console.log(name === name2)
+
+let s1 = Symbol('s1');
+console.log(s1)
+let obj = {
+    [s1]:'wangfeifan',
+    age:'24'
+}
+
+// obj[s1] = 'wangfeifan'
+
+// 用Symbol定义的对象中的变量，取值时一定要用[变量名]
+console.log(obj.s1)
+
+// 也打印不出来对应的key
+for(let key in obj){
+    console.log(key)
+}
+// 也取不到变量的数组
+console.log(Object.keys(obj))
+
+// 想要读取的时候可以用Reflect
+let m = Reflect.ownKeys(obj)
+console.log(m)
+
+</script>
+</body>
+</html>
