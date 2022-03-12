@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 集合：表示无重复值的有序列表
+// let set = new Set()
+// console.log(set)
+
+// 添加元素
+// set.add(2)
+// set.add('5')
+// set.add('5')
+// set.add([1,2,3])
+// 删除元素
+// set.delete(2)
+
+// 检验某个值是否在set中
+// console.log('has(4)',set.has('4'))
+// console.log('has(5)',set.has('5'))
+// console.log(set)
+
+// 键和值相等
+// set.forEach((val,key)=>{
+//     console.log("val",val)
+//     console.log("key",key)
+// })
+
+// 将set转化成数组
+// let set2 = new Set([1,2,2,3,4,5,5,1,7])
+// console.log('长度',set2.size);
+// console.log("数组变成集合",set2)
+// 扩展运算符
+// let arr = [...set2]
+// console.log("转化为数组之后",arr)
+
+// 注意
+// 1.set中的对象的引用无法被释放
+// let set3 = new Set(), obj = {};
+// set3.add(obj);
+// 释放当前资源
+// obj = null
+// console.log("set引用对象",set3)
+
+
+// 1.set中的对象的引用无法被释放
+let set4 = new WeakSet(), obj = {};
+set4.add(obj);
+// 释放当前资源
+obj = null
+console.log("WeakSet引用对象",set4)
+
+// WeakSet
+// 1.不能传入非对象类型的参数
+// 2.不可迭代
+// 3.没有forEach()
+// 4.没有size属性
+
+</script>
+</body>
+</html>
