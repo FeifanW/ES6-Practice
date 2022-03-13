@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// entries()  keys()  values()  返回一个遍历器， 可以使用for...of 循环进行遍历
+
+// keys() 对键名进行遍历
+// values() 对值遍历
+// entries()  对键值对遍历
+// console.log(['a','b'].keys());
+
+// for(let index of ['a','b'].keys()){
+//     console.log("index",index);
+// }
+
+// for(let ele of ['a','b'].values()){
+//     console.log("ele",ele);
+// }
+
+for(let [index,el] of ['a','b'].entries()){
+    console.log(index,el);
+}
+
+let letter = ['a','b','c']
+let it = letter.entries()
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+console.log(it.next().value);
+
+// includes() 返回一个布尔值，表示某个数组是否包含给定的值
+console.log([1,2,3].includes(2));
+console.log([1,2,3].includes('4'));
+
+// 之前使用的indexOf()
+console.log([1,2,3].indexOf('2'));
+
+</script>
+</body>
+</html>
