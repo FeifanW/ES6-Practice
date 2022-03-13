@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+// 数组的方法 from()  of()
+// from() 将伪数组转化成真正的数组
+function add() {
+    // console.log(arguments);
+    // es5转换
+    // let arr = [].slice.call(arguments)
+    // console.log(arr);
+    // es6写法
+    let arr = Array.from(arguments)
+    console.log(arr);
+}
+add(1,2,3)
+
+// 获取li标签数组
+let lis = document.querySelectorAll('li')
+// console.log(lis);
+
+// console.log(Array.from(lis));
+// 扩展运算符 将伪数组转化成真正的数组
+// console.log([...lis]);
+
+// from() 还可以接收第二个参数，用来对每个元素进行处理
+let liContent = Array.from(lis, ele => ele.textContent)
+console.log("liContent",liContent)
+
+// of() 将任意的数据类型，转换成数组
+console.log(Array.of(3,11,20,[1,2,3],{id:1}));
+
+// copywithin() 数组内部将指定位置的元素复制到其他的位置，返回数组
+// 从6位置往后的所有数值，替换从0位置往后的三个数值
+console.log([1,2222,3,5,44,6,7,8,9].copyWithin(0,6));
+
+// find()  findIndex()
+// find() 找出第一个符合条件的数组成员
+let num = [1,2,-10,-30,9,2].find( n => n<0)
+console.log("num",num);
+
+// findIndex() 找出第一个符合条件的数组成员的索引
+let numIndex = [1,2,-10,-30,9,2].findIndex( n => n<0)
+console.log(numIndex);
+
+
+</script>
+</body>
+</html>
