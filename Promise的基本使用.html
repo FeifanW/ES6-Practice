@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<script>
+// Promise承诺
+// 相当于一个容器，保存着未来才会结束的事件（异步操作）的一个结果
+// 各种异步操作都可以用同样的方法进行处理 axios
+
+// 特点：
+// 1.对象的状态不受外界影响  处理异步操作 三个状态 Pending(进行) Resolved(成功) Rejected(失败)
+// 2.一旦状态改变，就不会再变，任何时候都可以得到这个结果
+
+// let pro = new Promise(function(resolved,rejected){
+//     // 执行异步操作
+//     let res = {
+//         code:200,
+//         data:{
+//             name:"小马哥"
+//         },
+//         error:'错误信息'
+//     }
+//     setTimeout(()=>{
+//         if(res.code === 201){
+//             resolved(res.data)
+//         }else{
+//             rejected(res.error)
+//         }
+//     },1000)
+// })
+// console.log(pro);
+// pro.then((val)=>{
+//     console.log(val);
+// },(err)=>{
+//     console.log(err);
+// })
+
+// 封装一下
+function timeOut(ms) {
+    return new Promise((resolved,rejected)=>{
+        setTimeout(()=>{
+            resolved("hello world")
+        },ms)
+    })
+}
+timeOut(2000).then((val)=>{
+    console.log(val);
+})
+
+</script>
+</body>
+</html>
