@@ -9,6 +9,54 @@
 </head>
 <body>
 <script>
+const getJSON = function(url) {
+    return new Promise((resolve,reject)=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open('POST',url)
+        xhr.onreadystatechange =  handler
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Accept','application/json')
+        // 发送
+        xhr.send()
+        function handler() {
+            // console.log(this);
+            if(this.readyState === 4){
+                if(this.status ===200){
+                    resolve(this.response)
+                }else{
+                    reject(new Error(this.statusText))
+                }
+            }
+        }
+    })
+}
+// let a = getJSON('https://www.fastmock.site/mock/219e3fa82e0c0020d846b042c450e035/login/newConfig').then((data)=>{
+//     console.log(data);
+//     return "链式调用"
+// },(error)=>{
+//     console.log(error);
+// }).then((data)=>{
+//     console.log("data",data);
+// })
+// console.log("a",a);
+
+// then() 方法
+// then()第一个参数是resolve的回调函数，第二个参数是可选的，是reject状态回调函数
+// then()返回一个新的promise实例，可以采用链式编程
+getJSON('https://www.1fastmock.site/mock/219e3fa82e0c0020d846b042c450e035/login/newConfig')
+    .then((data)=>{
+        console.log(data);
+    // }).then(null,err=>{
+    //     console.log(err);
+    // })
+    }).catch(err=>{
+        console.log(err);
+    })
+    // .then(null,err=>{
+    //     console.log(err);
+    // })  与 .catch是一样的，简化的写法
+
+
 </script>
 </body>
 </html>
