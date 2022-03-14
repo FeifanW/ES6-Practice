@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<script>
+// 可以实现异步代码同步化
+function* main(){
+    let res = yield request('https://www.fastmock.site/mock/219e3fa82e0c0020d846b042c450e035/login/newConfig')
+    console.log("res之前");
+    console.log(res);
+    console.log("res之后")
+}
+const ite = main()
+ite.next()
+
+
+function request(url) {
+    $.ajax({
+        url,
+        method:'post',
+        success(res){
+            ite.next(res)
+        }
+    })
+}
+
+// 加载loading ...页面
+// 数据加载完成
+// loading关闭
+
+function* load() {
+    loadUI()
+    yield showData()
+    hideUI()
+}
+let itLoad = load()
+itLoad.next()
+function loadUI() {
+    console.log("加载loading...页面");
+}
+function showData() {
+    // 模拟异步操作
+    setTimeout(()=>{
+        console.log('数据加载完成');
+        itLoad.next()
+    },1000)
+}
+function hideUI() {
+    console.log("隐藏loading...页面");
+}
+
+
+
+
+</script>
+</body>
+</html>
