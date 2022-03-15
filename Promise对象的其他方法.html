@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<script>
+// resolve() reject()  all()  race()  done()  finally()
+// resolve()能将现有的任何对象转换成promise对象
+// let p = Promise.resolve('foo')
+// let p = new Promise(resolve => resolve('foo'))
+// p.then((data) => {
+//     console.log(data);
+// })
+
+
+// 应用：一些游戏类的素材比较多，等待图标、flash、静态资源文件都加载完成才进行页面的初始化
+// let promise1 = new Promise((resolve,reject) => {})
+// let promise2 = new Promise((resolve,reject) => {})
+// let promise3 = new Promise((resolve,reject) => {})
+
+// let p4 = Promise.all([promise1, promise2, promise3])
+// p4.then(()=>{
+//     // 三个都成功 才成功
+// }).catch(err=>{
+//     // 如果有一个失败则失败
+// })
+
+// race() 某个异步请求设置超时时间，并且在超时后执行相应的操作
+// 1.请求图片资源
+function requestImg(imgSrc) {
+    return new Promise((resolve, reject)=>{
+        const img = new Image();
+        img.onload = function() {
+            resolve(img)
+        }
+        img.src = imgSrc
+    })
+}
+function timeout() {
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            reject(new Error("图片请求超时"))
+        },1000)
+    })
+}
+Promise.race([requestImg('https://gimg3.baidu.com/search/src=https%3A%2F%2Fbkimg.cdn.bcebos.com%2Fsmart%2Fcaef76094b36acaf2eddf70e758b9a1001e9380136bd-bkimg-process%2Cv_1%2Crw_1%2Crh_1%2Cmaxl_300%2Cpad_1&refer=http%3A%2F%2Fwww.baidu.com&app=2021&size=f256,256&n=0&g=0n&q=100&fmt=auto?sec=1647450000&t=dd50ef60cc00a3bcfe7963939b8d9506'), timeout()]).then((data)=>{
+    console.log(data)
+    document.body.appendChild(data)
+}).catch(err=>{
+    console.log(err);
+})
+// done和finally都是不管最后状态如何都会执行的
+// .done(()=>{
+
+// }).finally(()=>{
+
+// })
+
+// server.listen(3000).then(()=>{
+// }).finally(server.stop())
+
+</script>
+</body>
+</html>
