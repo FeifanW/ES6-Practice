@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// Generator Promise async 1.解决回调地狱  2.使得异步操作更加方便
+// 作用：使得异步操作更方便
+// 基本操作 async它会返回一个Promise对象
+// async是Generator的一个语法糖
+async function f(){
+    // return await 'hello world'
+    let s = await 'hello world'
+    let data = await s.split('')
+    return data
+}
+// 如果async函数中有多个await 那么then函数会等待所有的await指令运行完的结果
+f().then(v=>{console.log(v)}).catch(e=>console.log(e))
+
+async function f2() {
+    // throw new Error('出错了')
+    // await Promise.reject("出错了")
+    // await Promise.resolve("成功了")
+    try {
+        await Promise.reject("出错了")
+    } catch(error) {
+        
+    }
+    return await Promise.resolve("成功了")
+}
+f2().then(v=>console.log(v)).catch(e=>console.log(e))
+
+const getJSON = function(url) {
+    return new Promise((resolve,reject)=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open('POST',url)
+        xhr.onreadystatechange =  handler
+        xhr.responseType = 'json';
+        xhr.setRequestHeader('Accept','application/json')
+        // 发送
+        xhr.send()
+        function handler() {
+            // console.log(this);
+            if(this.readyState === 4){
+                if(this.status ===200){
+                    resolve(this.response)
+                }else{
+                    reject(new Error(this.statusText))
+                }
+            }
+        }
+    })
+}
+
+async function getConfig(url) {
+    // 发送ajax请求  获取登录配置
+    let res = await getJSON(url)
+    // console.log(res);
+    return res
+}
+let mockURL = 'https://www.fastmock.site/mock/219e3fa82e0c0020d846b042c450e035/login/newConfig'
+getConfig(mockURL).then(config => {
+    console.log(config);
+})
+</script>
+</body>
+</html>
